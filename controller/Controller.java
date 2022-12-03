@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.awt.event.MouseEvent;
 import java.io.File;
 
@@ -14,6 +17,7 @@ public class Controller implements MouseInputListener {
 
     private int contador = 0;
     private Resize resize = new Resize();
+    private List<String> imagenesMostrar = new ArrayList<String>();
 
     public Controller(View view) {
         this.view = view;
@@ -25,13 +29,22 @@ public class Controller implements MouseInputListener {
 
         File[] files = folder.listFiles();
 
-        for(File file:files){
-            if(file.isFile()){
-                System.out.println("File: " + file.getName());
+        for (File file : files) {
+            if (file.isFile()) {
+                String[] extension = (file.getName()).split("\\.");
+                if (extension[1].equals("png")) {
+                    for (File file2 : files) {
+                        if (file2.isFile()) {
+                            String[] extension2 = (file2.getName()).split("\\.");
+                            if (extension2[1].equals("txt") && extension[0].equals(extension2[0])) {
+                                imagenesMostrar.add(extension[0]);
+                            }
+                        }
+                    }
+                }
             }
         }
-        
-
+        System.out.println(imagenesMostrar);
     }
 
     private void listeners() {
