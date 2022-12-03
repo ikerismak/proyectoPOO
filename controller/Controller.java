@@ -45,10 +45,12 @@ public class Controller implements MouseInputListener {
             }
         }
         System.out.println(imagenesMostrar);
+  
     }
 
     private void listeners() {
         view.next.addMouseListener(this);
+        view.prev.addMouseListener(this);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class Controller implements MouseInputListener {
 
         if (e.getSource() == view.next) {
 
-            if (contador >= 2) {
+            if (contador >= imagenesMostrar.size() - 1) {
                 contador = 0;
             } else {
                 contador++;
@@ -64,15 +66,16 @@ public class Controller implements MouseInputListener {
         }
 
         if (e.getSource() == view.prev) {
-
             if (contador <= 0) {
-                contador = 2;
+                contador = imagenesMostrar.size() - 1;
             } else {
                 contador--;
             }
         }
 
-        View.imagen.setIcon(resize.resizeImage(new ImageIcon("imagen1.png")));
+        System.out.println(contador);
+
+        View.imagen.setIcon(resize.resizeImage(new ImageIcon( imagenesMostrar.get(contador) + ".png")));
 
     }
 
