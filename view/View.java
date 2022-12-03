@@ -6,34 +6,28 @@ import java.awt.Image;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.imageio.stream.ImageInputStream;
 import javax.swing.ImageIcon;
 
+import controller.Resize;
 
-public class View extends JFrame{
+public class View extends JFrame {
 
     public JButton prev, next;
     public static JLabel imagen;
     public static ImageIcon icono;
 
+    Resize resize = new Resize();
 
-    public View(){
+    public View() {
 
         config();
         prev = new JButton("<");
         prev.setBounds(10, 135, 60, 30);
 
-
         imagen = new JLabel();
-        icono = new ImageIcon("imagen1.png");
 
-        Image imagenIcono = icono.getImage();
+        imagen.setIcon(resize.resizeImage(new ImageIcon("imagen2.png")));
 
-        Image imagenModificada = imagenIcono.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
-        icono = new ImageIcon(imagenModificada);
-
-
-        imagen.setIcon(icono);
         imagen.setBounds(80, 50, 200, 200);
 
         next = new JButton(">");
@@ -45,14 +39,14 @@ public class View extends JFrame{
 
     }
 
-    private void config(){
-        //Salir
+    private void config() {
+        // Salir
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        //Titulo
+        // Titulo
         this.setTitle("Proyecto POO");
 
-        //Tamano
+        // Tamano
         this.setSize(360, 300);
 
         this.setLocationRelativeTo(null);
@@ -61,6 +55,6 @@ public class View extends JFrame{
 
         this.setResizable(false);
         this.setEnabled(true);
-        this.setLayout(null); 
+        this.setLayout(null);
     }
 }

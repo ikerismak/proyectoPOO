@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.event.MouseInputListener;
@@ -12,12 +13,25 @@ public class Controller implements MouseInputListener {
     private View view;
 
     private int contador = 0;
+    private Resize resize = new Resize();
 
     public Controller(View view) {
         this.view = view;
         view.setVisible(true);
-
         listeners();
+
+        String folderPath = ".";
+        File folder = new File(folderPath);
+
+        File[] files = folder.listFiles();
+
+        for(File file:files){
+            if(file.isFile()){
+                System.out.println("File: " + file.getName());
+            }
+        }
+        
+
     }
 
     private void listeners() {
@@ -26,7 +40,7 @@ public class Controller implements MouseInputListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
+
         if (e.getSource() == view.next) {
 
             if (contador >= 2) {
@@ -34,7 +48,6 @@ public class Controller implements MouseInputListener {
             } else {
                 contador++;
             }
-            System.out.println(contador);
         }
 
         if (e.getSource() == view.prev) {
@@ -44,11 +57,9 @@ public class Controller implements MouseInputListener {
             } else {
                 contador--;
             }
-            System.out.println(contador);
         }
 
-        view.icono = new ImageIcon("imagen"+contador+".png");
-        view.imagen.setIcon(view.icono);
+        View.imagen.setIcon(resize.resizeImage(new ImageIcon("imagen1.png")));
 
     }
 
