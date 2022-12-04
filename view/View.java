@@ -13,7 +13,7 @@ import controller.Resize;
 public class View extends JFrame {
 
     public JButton prev, next;
-    public static JLabel imagen;
+    public static JLabel imagen, texto;
     public static ImageIcon icono;
 
     Resize resize = new Resize();
@@ -22,20 +22,24 @@ public class View extends JFrame {
 
         config();
         prev = new JButton("<");
-        prev.setBounds(10, 135, 60, 30);
+        prev.setBounds(10, 369, 60, 30);
 
         imagen = new JLabel();
 
         imagen.setIcon(resize.resizeImage(new ImageIcon("imagen2.png")));
-
         imagen.setBounds(80, 50, 200, 200);
 
+        texto = new JLabel("Texto de reporte");
+        texto.setBounds(100, 1, 200, 100);
+
+
         next = new JButton(">");
-        next.setBounds(290, 135, 60, 30);
+        next.setBounds(954, 369, 60, 30);
 
         add(prev);
         add(imagen);
         add(next);
+        add(texto);
 
     }
 
@@ -47,7 +51,7 @@ public class View extends JFrame {
         this.setTitle("Proyecto POO");
 
         // Tamano
-        this.setSize(360, 300);
+        this.setSize(1024, 768);
 
         this.setLocationRelativeTo(null);
 
