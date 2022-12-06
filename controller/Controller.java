@@ -11,7 +11,7 @@ import javax.swing.event.MouseInputListener;
 
 import view.View;
 
-public class Controller implements MouseInputListener {
+public class Controller implements MouseInputListener{
 
     private View view;
 
@@ -48,9 +48,15 @@ public class Controller implements MouseInputListener {
   
     }
 
+    /**
+     * 
+     */
     private void listeners() {
+
         view.next.addMouseListener(this);
         view.prev.addMouseListener(this);
+        view.addImage.addMouseListener(this);
+        view.viewImages.addMouseListener(this);
     }
 
     @Override
@@ -77,6 +83,19 @@ public class Controller implements MouseInputListener {
 
         View.imagen.setIcon(resize.resizeImage(new ImageIcon( imagenesMostrar.get(contador) + ".png")));
 
+        if(e.getSource() == view.addImage){
+
+            view.panel1.setVisible(false);
+            view.panel2.setVisible(true);
+
+        }
+
+        if(e.getSource() == view.viewImages){
+
+            view.panel1.setVisible(true);
+            view.panel2.setVisible(false);
+
+        }
     }
 
     @Override

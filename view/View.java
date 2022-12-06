@@ -14,7 +14,7 @@ import controller.Resize;
 public class View extends JFrame {
 
     public JButton prev, next,  addImage, viewImages;
-    public static JLabel imagen, texto;
+    public static JLabel imagen, texto, test;
     public static ImageIcon icono;
     public JPanel panel1, panel2;
 
@@ -25,10 +25,12 @@ public class View extends JFrame {
         panel1 = new JPanel();
         panel1.setBackground(Color.lightGray);
         panel1.setBounds(10,50,1005,680);
+        panel1.setVisible(true);
 
         panel2 = new JPanel();
         panel2.setBackground(Color.green);
-        panel2.setBounds(5,112,370,200);
+        panel2.setBounds(10,50,1005,680);
+        panel2.setVisible(false);
 
         addImage = new JButton("Add new image");
         addImage.setBounds(211, 1, 200, 50);
@@ -40,12 +42,14 @@ public class View extends JFrame {
         config();
 
         loadPanelOneComponents();
+        loadPanelTwoComponents();
 
         panel1.add(prev);
         panel1.add(imagen);
         panel1.add(next);
         panel1.add(texto);
         add(panel1);
+        add(panel2);
         add(viewImages);
         add(addImage);
 
@@ -72,6 +76,13 @@ public class View extends JFrame {
 
 
 
+
+    }
+
+    private void loadPanelTwoComponents(){
+
+        test = new JLabel("prueba");
+        test.setBounds(50, 50, 300, 300);
 
     }
 
