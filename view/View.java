@@ -7,16 +7,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+// import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.ImageIcon;
+// import javax.swing.JFileChooser;
 
 import controller.Resize;
 
 public class View extends JFrame {
 
-    public JButton prev, next,  addImage, viewImages;
+    public JButton prev, next,  addImage, viewImages , imageLoaderButton;
     public static JLabel imagen, texto, test;
     public static ImageIcon icono;
     public JPanel panel1, panel2;
+    // public JFileChooser imageLoader;
 
     Resize resize = new Resize();
 
@@ -48,6 +51,10 @@ public class View extends JFrame {
         panel1.add(imagen);
         panel1.add(next);
         panel1.add(texto);
+
+        panel2.add(test);
+        panel2.add(imageLoaderButton);
+
         add(panel1);
         add(panel2);
         add(viewImages);
@@ -79,10 +86,26 @@ public class View extends JFrame {
 
     }
 
+    /**
+     * 
+     */
     private void loadPanelTwoComponents(){
 
         test = new JLabel("prueba");
         test.setBounds(50, 50, 300, 300);
+
+        // imageLoader = new JFileChooser("cargar imagen");
+        // imageLoader.setBounds(200,200,500,400);
+      
+
+        // FileNameExtensionFilter ImageFilter = new FileNameExtensionFilter("JPG,PNG, JPEG","JPG","PNG","JPEG");
+        
+        // imageLoader.setFileFilter(ImageFilter);
+
+
+
+        imageLoaderButton = new JButton("cargar imagen");
+        imageLoaderButton.setBounds(1,1,200,200);
 
     }
 
