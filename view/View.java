@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 // import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.ImageIcon;
 // import javax.swing.JFileChooser;
@@ -19,6 +21,10 @@ public class View extends JFrame {
     public static JLabel imagen, texto, test;
     public static ImageIcon icono;
     public JPanel panel1, panel2;
+
+    public JTextArea textArea;
+
+    public JScrollPane scrollArea;
     // public JFileChooser imageLoader;
 
     Resize resize = new Resize();
@@ -42,6 +48,7 @@ public class View extends JFrame {
         viewImages.setBounds(10, 1, 200, 50);
 
 
+
         config();
 
         loadPanelOneComponents();
@@ -55,10 +62,15 @@ public class View extends JFrame {
         panel2.add(test);
         panel2.add(imageLoaderButton);
 
+        panel2.add(scrollArea);
+
         add(panel1);
         add(panel2);
         add(viewImages);
         add(addImage);
+        panel2.setLayout(null);
+        panel1.setLayout(null);
+
 
     }
 
@@ -94,13 +106,15 @@ public class View extends JFrame {
         test = new JLabel("prueba");
         test.setBounds(50, 50, 300, 300);
 
-        // imageLoader = new JFileChooser("cargar imagen");
-        // imageLoader.setBounds(200,200,500,400);
-      
 
-        // FileNameExtensionFilter ImageFilter = new FileNameExtensionFilter("JPG,PNG, JPEG","JPG","PNG","JPEG");
-        
-        // imageLoader.setFileFilter(ImageFilter);
+        textArea = new JTextArea(30, 30);
+
+        scrollArea = new JScrollPane( textArea );
+
+        scrollArea.setBounds(450, 400, 100, 100);
+
+        scrollArea.setBackground(Color.RED);
+
 
 
 
