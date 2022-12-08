@@ -5,13 +5,20 @@ import java.util.List;
 
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+ 
 
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputListener;
 
 import view.View;
 
-public class Controller implements MouseInputListener {
+public class Controller implements MouseInputListener{
 
     private View view;
 
@@ -48,11 +55,21 @@ public class Controller implements MouseInputListener {
   
     }
 
+    /**
+     * 
+     */
     private void listeners() {
+
         view.next.addMouseListener(this);
         view.prev.addMouseListener(this);
+        view.addImage.addMouseListener(this);
+        view.viewImages.addMouseListener(this);
+        view.imageLoaderButton.addMouseListener(this);
     }
 
+    /* (non-Javadoc)
+     * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -77,6 +94,61 @@ public class Controller implements MouseInputListener {
 
         View.imagen.setIcon(resize.resizeImage(new ImageIcon( imagenesMostrar.get(contador) + ".png")));
 
+        if(e.getSource() == view.addImage){
+
+            view.panel1.setVisible(false);
+            view.panel2.setVisible(true);
+
+        }
+
+        if(e.getSource() == view.viewImages){
+
+            view.panel1.setVisible(true);
+            view.panel2.setVisible(false);
+
+        }
+
+        if(e.getSource() == view.imageLoaderButton){
+
+
+            JFileChooser imageLoader = new JFileChooser();
+
+            imageLoader.showOpenDialog(imageLoader);
+            
+            File archive = imageLoader.getSelectedFile();
+
+            String origen = archive.getPath();
+
+            System.out.println(origen);
+
+
+
+            if(archive != null){
+                try{
+
+                    String dest = System.getProperty("user.dir")  + "/images/" + archive.getName();
+                    Path destTwo = Paths.get(dest);
+
+                    String origin = archive.getPath();
+                    Path org = Paths.get(origin);
+
+                    Files.copy(org, destTwo,StandardCopyOption.REPLACE_EXISTING );
+
+                    JOptionPane.showMessageDialog(null, "El archivo fue copiado con exito en la carpeta" + dest);
+
+
+
+
+                }catch(Exception error){
+
+                    System.out.println("algo paso");
+
+                }
+            }
+            System.out.println("evento subir");
+
+            
+        }
     }
 
     @Override
